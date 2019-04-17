@@ -73,7 +73,7 @@ xterm*|rxvt*)
 esac
 
 # start tmux by default
-[[ $TERM != "screen" ]] && exec tmux
+[[ $TERM != "screen" ]] && exec tmux -2
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
