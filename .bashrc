@@ -131,3 +131,8 @@ export PROMPT_COMMAND='history -a; history -r'
 
 # history: show timestamps
 export HISTTIMEFORMAT="%d/%m/%y %T "
+
+# vim as default editor
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
