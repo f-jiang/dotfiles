@@ -73,8 +73,11 @@ xterm*|rxvt*)
     ;;
 esac
 
-# start tmux by default
-[[ $TERM != "screen" ]] && exec tmux -2
+# start tmuxinator by default
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+    # test colors using 'msgcat --color=test'
+    exec env TERM="xterm-256color" tmuxinator start default-project
+fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -123,8 +126,7 @@ fi
 # ROS environment variables
 source /opt/ros/kinetic/setup.bash
 
-# tmux: enable 256 colors
-alias tmux="tmux -2"
+alias mux="tmuxinator"
 
 # history: show commands from all shells
 export PROMPT_COMMAND='history -a; history -r'
