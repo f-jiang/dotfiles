@@ -48,3 +48,6 @@ windows:
       panes:
         - # empty
         - python3
+  - htop:
+      panes:
+        - htop
