@@ -57,9 +57,9 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] @ \[\033[0;36m\]\h \w\[\033[0;32m\]$(__git_ps1)\n\[\033[0;32m\]└─\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] ▶ \[\033[0m\] '
+    PS1='\[\033[0;32m\]\[\033[0m\033[0;32m\]\u\[\033[0;36m\] @ \[\033[0;36m\]\h \w\[\033[0;32m\]$(__git_ps1)\n\[\033[0;32m\]└─\[\033[0m\033[0;32m\] \$\[\033[0m\033[0;32m\] \[\033[0m\]'
 else
-    PS1='\u @ \h \w$(__git_ps1)\n└─ \$ ▶  '
+    PS1='\u @ \h \w$(__git_ps1)\n└─ \$ '
 fi
 export PS1='\$SHLVL'":$SHLVL $PS1"
 unset color_prompt force_color_prompt
@@ -73,11 +73,8 @@ xterm*|rxvt*)
     ;;
 esac
 
-# start tmuxinator by default
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-    # test colors using 'msgcat --color=test'
-    exec env TERM="xterm-256color" tmuxinator start default-project
-fi
+# start tmux by default
+[[ $TERM != "screen" ]] && exec tmux -2
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -123,11 +120,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# ROS environment variables
-source /opt/ros/kinetic/setup.bash
-
-alias mux="tmuxinator"
-
 # history: show commands from all shells
 export PROMPT_COMMAND='history -a; history -r'
 
@@ -138,3 +130,4 @@ export HISTTIMEFORMAT="%d/%m/%y %T "
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+cd ~
