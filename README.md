@@ -21,6 +21,6 @@ ln -s {`pwd`,~/.config/tmuxinator}/default-project.yml
 
 3. [Set up vim](https://github.com/f-jiang/vim-config)
 
-4. From this repo, run `vim "+TmuxlineSnapshot tmuxline_snapshot"`
+4. From this repo, open `tmux` then run `vim "+TmuxlineSnapshot tmuxline_snapshot"`
 
 5. In `.tmux.conf`, set `TMUX_SNAPSHOT_PATH` to point to the `tmuxline_snapshot` file
