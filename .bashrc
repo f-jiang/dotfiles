@@ -117,9 +117,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# ROS environment variables
-source /opt/ros/kinetic/setup.bash
-
 alias mux="tmuxinator"
 
 # history: show commands from all shells
